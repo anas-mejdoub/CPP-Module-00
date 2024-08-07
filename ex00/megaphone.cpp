@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:31:39 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/07 12:34:31 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:22:54 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int ac, char **av)
     }
     else
     {
-        for (int i = 1; i < ac; i++)
+        for (int i = 1; av[i]; i++)
         {
             for (int j = 0; av[i][j]; j++)
             {
