@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/08 15:26:02 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:45:00 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void add(PhoneBook& book)
             break;
         }
     }
-    // if (!found)
-    // {
-
-    // }
+    if (!found)
+    {
+        
+    }
 }
 
 int main()

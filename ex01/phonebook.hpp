@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:39 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/08 14:55:09 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:51:28 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Contact
         std::string last_name;
         std::string darkest_secret;
         std::string nickname;
+        long long time_stamp;
 };
 
 
