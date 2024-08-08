@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:39 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/08 13:17:32 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:55:09 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Contact
     public :
         Contact();
         std::string phone_number;
-        std::string firs_name;
+        std::string first_name;
         std::string last_name;
         std::string darkest_secret;
         std::string nickname;
