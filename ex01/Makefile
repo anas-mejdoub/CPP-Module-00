@@ -1,12 +1,12 @@
 SRC=phonebook.cpp
 OBJ=$(SRC:.cpp=.o)
-CC = clang++
-FLAGS= -Wall -Wextra -Werror
-NAME = phonebook
+CC =clang++
+FLAGS=-Wall -Wextra -Werror
+NAME =phonebook
 
-all = $(NAME)
+all : $(NAME)
 
-$(NAME) : ($OBJ)
+$(NAME) : $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.cpp
@@ -18,4 +18,4 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
