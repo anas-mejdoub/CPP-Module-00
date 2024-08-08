@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/08 15:11:26 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:26:02 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int main()
     {
         add(book);
     }
+    if (command == "EXIT")
+        exit (0);
     for (int i = 0; i < 8; i++) {
         if (!book.contacts[i].first_name.empty()) {
             std::cout << book.contacts[i].first_name << "\n";
