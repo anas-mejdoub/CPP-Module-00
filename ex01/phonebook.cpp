@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/09 11:38:27 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/09 11:52:41 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,45 @@ Contact::Contact()
     gettimeofday(&tv, nullptr);
     time_stamp = tv.tv_usec;
 }
-
+std::string not_empty(std::string str)
+{
+    if (str.empty())
+    {
+        while (1)
+        {
+            if (!str.empty())
+                break;
+            std::cout << "an entry cannot be empty !\n";
+            std::cin >> str;
+        }
+    }
+    return (str);
+}
 void add(PhoneBook& book)
 {
     bool found = false;
     std::string first, last, number, ds, nickname;
     int i = 0;
-    // while (1)
-    // {
-        // if (i == 0)
-        // {
-            std::cout << "first name :";
-            std::cin >> first;
-            if (first.empty())
-            {
-                std::cout << "first name cannot be empty !\n";
-                // exit (0);
-            }
-        // }
-        // if (i == 1)
-        // {
-            std::cout << "last name :";
-            std::cin >> last;
-        // }
-        // if (i == 2)
-        // {
-            std::cout << "nickname :";
-            std::cin >> nickname;
-        // }
-        // if (i == 3)
-        // {
-            std::cout << "number :";
-            std::cin >> number;
-        // }
-        // if (i == 4)
-        // {
-            std::cout << "darkest secret :\n";
-            std::cin >> ds;
-        // }
-        // i++;
-        // if (i >= 4)
-        //     break;
-    // }
+    // first name
+    std::cout << "first name :";
+    std::cin >> first;
+    first = not_empty(first);
+    // last name
+    std::cout << "last name :";
+    std::cin >> last;
+    last = not_empty(last);
+    // nickname
+    std::cout << "nickname :";
+    std::cin >> nickname;
+    nickname = not_empty(nickname);
+    // number
+    std::cout << "number :";
+    std::cin >> number;
+    number = not_empty(number);
+    // darkest secret
+    std::cout << "darkest secret :\n";
+    std::cin >> ds;
+    ds = not_empty(ds);
     for (i = 0; i < 8; i++)
     {
         if (book.contacts[i].first_name.empty())
@@ -88,7 +85,7 @@ void add(PhoneBook& book)
                 index = i;
             }
         }
-        std::cout << "the last one is " << book.contacts[i].first_name << "\n";
+        // std::cout << "the last one is " << book.contacts[i].first_name << "\n";
         book.contacts[index].first_name = first;
         book.contacts[index].last_name = last;
         book.contacts[index].darkest_secret = ds;
