@@ -6,13 +6,14 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:39 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/08 16:51:28 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/09 10:54:25 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONE_H
 #define PHONE_H
 #include <string>
+#include <sys/time.h>  
 #include <iostream>
 class Contact
 {
