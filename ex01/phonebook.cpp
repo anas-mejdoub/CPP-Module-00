@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/10 11:30:18 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/10 16:02:14 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ std::string not_empty(std::string str)
     }
     return (str);
 }
+
+void PhoneBook::Search()
+{
+    for (int i = 0; contacts[i].first_name.empty(); i++)
+    {
+        // if
+    }
+}
+
 void PhoneBook::Add()
 {
     bool found = false;
@@ -114,6 +123,10 @@ int main()
     }
     if (command == "EXIT")
         exit (0);
+    if (command == "SEARCH")
+    {
+        book.Search();
+    }
     else
     {
         std::cout << "command not found !\n";
