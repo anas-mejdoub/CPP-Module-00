@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:39 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/09 10:54:25 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/09 11:59:34 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Contact
 class PhoneBook
 {
     public :
+        void Add();
         PhoneBook();
         Contact contacts[8];
 };
