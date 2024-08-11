@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/10 16:02:14 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:45:56 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ std::string not_empty(std::string str)
 
 void PhoneBook::Search()
 {
-    for (int i = 0; contacts[i].first_name.empty(); i++)
-    {
-        // if
-    }
+    // for loop to show all the contacts
+    // for (int i = 0; contacts[i].first_name.empty(); i++)
+    // {
+    //     // if
+    // }
 }
 
 void PhoneBook::Add()
