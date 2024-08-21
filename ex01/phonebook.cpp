@@ -6,13 +6,14 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/11 14:45:56 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:17:25 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 PhoneBook::PhoneBook()
 {
+    next_index = 0;
     // std::cout << "phone just created !\n";
 }
 Contact::Contact()
@@ -38,13 +39,19 @@ void PhoneBook::Search()
     // {
     //     // if
     // }
+    for (int i = 0; i < 8; i++) {
+        if (!contacts[i].first_name.empty()) {
+            std::cout << "--" << contacts[i].first_name << "--\n";
+        }
+    }
 }
 
 void PhoneBook::Add()
 {
-    bool found = false;
+    // bool found = false;
     std::string first, last, number, ds, nickname;
-    int i = 0;
+    // int i = 0;
+    
     // first name
     std::cout << "first name : ";
     std::getline(std::cin, first);
@@ -65,38 +72,15 @@ void PhoneBook::Add()
     std::cout << "darkest secret : ";
     std::getline(std::cin, ds);
     ds = not_empty(ds);
-    for (i = 0; i < 8; i++)
-    {
-        if (contacts[i].first_name.empty())
-        {
-            found = true;
-            contacts[i].first_name = first;
-            contacts[i].last_name = last;
-            contacts[i].darkest_secret = ds;
-            contacts[i].nickname = nickname;
-            contacts[i].phone_number = number;
-            break;
-        }
-    }
-    if (!found)
-    {
-        int index = 0;
-        long min = 0;
-        for (i = 0; i < 8; i++)
-        {
-            if (i == 0 || contacts[i].time_stamp < min)
-            {
-                min = contacts[i].time_stamp;
-                index = i;
-            }
-        }
-        // std::cout << "the last one is " << contacts[i].first_name << "\n";
-        contacts[index].first_name = first;
-        contacts[index].last_name = last;
-        contacts[index].darkest_secret = ds;
-        contacts[index].nickname = nickname;
-        contacts[index].phone_number = number;
-    }
+    contacts[next_index].first_name = first;
+    contacts[next_index].last_name = last;
+    contacts[next_index].darkest_secret = ds;
+    contacts[next_index].nickname = nickname;
+    contacts[next_index].phone_number = number;
+    if (next_index < 7)
+        next_index++;
+    else
+        next_index = 0;
 }
 
 int main()
@@ -107,24 +91,13 @@ int main()
     {
     std::cout << "Commands :";
     std::getline(std::cin, command);
-    // std::cin >> command;
-    // std::cout << "command is " << command << "---\n";
-    if (command.empty())
-    {
-        std::cout << "yes\n";
-        exit (0);
-    }
-    if (command == "\n")
-    {
-        std::cout << "opop\n";
-    }
     if (command == "ADD")
     {
         book.Add();
     }
-    if (command == "EXIT")
+    else if (command == "EXIT")
         exit (0);
-    if (command == "SEARCH")
+    else if (command == "SEARCH")
     {
         book.Search();
     }
@@ -132,10 +105,10 @@ int main()
     {
         std::cout << "command not found !\n";
     }
-    for (int i = 0; i < 8; i++) {
-        if (!book.contacts[i].first_name.empty()) {
-            std::cout << "--" << book.contacts[i].first_name << "--\n";
-        }
-    }
+    // for (int i = 0; i < 8; i++) {
+    //     if (!book.contacts[i].first_name.empty()) {
+    //         std::cout << "--" << book.contacts[i].first_name << "--\n";
+    //     }
+    // }
     }
 }
