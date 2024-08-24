@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/21 16:17:25 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/24 19:39:36 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,33 @@ std::string not_empty(std::string str)
 
 void PhoneBook::Search()
 {
-    // for loop to show all the contacts
-    // for (int i = 0; contacts[i].first_name.empty(); i++)
-    // {
-    //     // if
-    // }
-    for (int i = 0; i < 8; i++) {
-        if (!contacts[i].first_name.empty()) {
-            std::cout << "--" << contacts[i].first_name << "--\n";
+    for (int i = 0; i < 4; i++) 
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            std::cout << "-";
+        }
+        if (i == 3)
+            std::cout << "\n";
+    }
+    for (int i = 0; i < 8; i++)
+    {
+        if (!contacts[i].darkest_secret.empty())
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                std::cout << "|\n";
+            }
+        for (int i = 0; i < 4; i++) 
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                std::cout << "-";
+            }
+            
+            if (i == 3)
+                std::cout << "\n";
+        }
         }
     }
 }
@@ -91,7 +110,12 @@ int main()
     {
     std::cout << "Commands :";
     std::getline(std::cin, command);
-    if (command == "ADD")
+    
+    // if (std::c)
+    // {
+    //     std::cout << "command not found !\n";
+    // }
+    /*else*/ if (command == "ADD")
     {
         book.Add();
     }
