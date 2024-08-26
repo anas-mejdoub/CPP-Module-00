@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/24 19:39:36 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:19:26 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,60 @@ std::string not_empty(std::string str)
     }
     return (str);
 }
-
+void print_content(std ::string str)
+{
+    // std::cout << "|";
+                if (str.length() < 10)
+                {
+                    for (int x = 0; x < 13 - (int )str.length(); x++)
+                        std::cout << " ";
+                    std::cout << str;
+                    std::cout << "|";
+                }
+                else
+                {
+                    for (int x = 0; x < 10; x++)
+                    {
+                        std::cout << str[x];
+                    }
+                    std::cout << ".  |";
+                }
+}
 void PhoneBook::Search()
 {
-    for (int i = 0; i < 4; i++) 
-    {
-        for (int j = 0; j < 10; j++)
+
+    std::cout << "----------------------------------------------------------------------\n";
+    std::cout << "| FIRST NAME  |   LAST NAME |   NICKNAME  |    NUMBER   | DARK SECRET |\n";
+    std::cout << "|_____________|_____________|_____________|_____________|_____________|\n";    
+        for (int i = 0; i < 8; i++)
         {
-            std::cout << "-";
-        }
-        if (i == 3)
-            std::cout << "\n";
-    }
-    for (int i = 0; i < 8; i++)
-    {
-        if (!contacts[i].darkest_secret.empty())
-        {
-            for (int j = 0; j < 2; j++)
+
+            if (!contacts[i].darkest_secret.empty())
             {
-                std::cout << "|\n";
+                std::cout << "|";
+                // if (contacts[i].first_name.length() < 10)
+                // {
+                //     for (int x = 0; x < 13 - (int )contacts[i].first_name.length(); x++)
+                //         std::cout << " ";
+                //     std::cout << contacts[i].first_name;
+                //     std::cout << "|";
+                // }
+                // else
+                // {
+                //     for (int x = 0; x < 10; x++)
+                //     {
+                //         std::cout << contacts[i].first_name[x];
+                //     }
+                //     std::cout << ".  |";
+                // }
+                print_content(contacts[i].first_name);
+                print_content(contacts[i].last_name);
+                print_content(contacts[i].nickname);
+                print_content(contacts[i].phone_number);
+                print_content(contacts[i].darkest_secret);
+                std::cout << "\n|_____________|_____________|_____________|_____________|_____________|\n"; 
             }
-        for (int i = 0; i < 4; i++) 
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                std::cout << "-";
-            }
-            
-            if (i == 3)
-                std::cout << "\n";
         }
-        }
-    }
 }
 
 void PhoneBook::Add()
