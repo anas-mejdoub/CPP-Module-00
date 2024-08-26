@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/26 19:43:09 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:51:51 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,20 +138,18 @@ int main()
     while (1)
     {
         std::cout << "available commands : (ADD, SEARCH, EXIT)\n";
-        std::cout << "ps :(enter the commands with UPPERCASE !)\n";
         std::cout << "enter a command :";
         std::getline(std::cin, command);
         
         if (std::cin.eof())
             break ;
-        
-        if (command == "ADD")
+        if (command == "ADD" || command == "add")
         {
             book.Add();
         }
-        else if (command == "EXIT")
+        else if (command == "EXIT" || command == "exit")
             exit (0);
-        else if (command == "SEARCH")
+        else if (command == "SEARCH" || command == "search")
         {
             book.Search();
         }
