@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/26 16:19:26 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:43:09 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,38 +53,45 @@ void print_content(std ::string str)
 void PhoneBook::Search()
 {
 
-    std::cout << "----------------------------------------------------------------------\n";
-    std::cout << "| FIRST NAME  |   LAST NAME |   NICKNAME  |    NUMBER   | DARK SECRET |\n";
-    std::cout << "|_____________|_____________|_____________|_____________|_____________|\n";    
+    std::cout << "-------------------------------------------------------------------------------------\n";
+    std::cout << "|     INDEX   |  FIRST NAME |   LAST NAME |  NICKNAME   |   NUMBER    | DARK SECRET |\n";
+    std::cout << "|_____________|_____________|_____________|_____________|_____________|_____________|\n";    
         for (int i = 0; i < 8; i++)
         {
 
             if (!contacts[i].darkest_secret.empty())
             {
                 std::cout << "|";
-                // if (contacts[i].first_name.length() < 10)
-                // {
-                //     for (int x = 0; x < 13 - (int )contacts[i].first_name.length(); x++)
-                //         std::cout << " ";
-                //     std::cout << contacts[i].first_name;
-                //     std::cout << "|";
-                // }
-                // else
-                // {
-                //     for (int x = 0; x < 10; x++)
-                //     {
-                //         std::cout << contacts[i].first_name[x];
-                //     }
-                //     std::cout << ".  |";
-                // }
+                char c = (i + 1) + '0';
+                print_content(&c);
                 print_content(contacts[i].first_name);
                 print_content(contacts[i].last_name);
                 print_content(contacts[i].nickname);
                 print_content(contacts[i].phone_number);
                 print_content(contacts[i].darkest_secret);
-                std::cout << "\n|_____________|_____________|_____________|_____________|_____________|\n"; 
+    std::cout << "\n|_____________|_____________|_____________|_____________|_____________|_____________|\n"; 
             }
         }
+    if (contacts[0].first_name.empty())
+    {
+        std::cout << "your contacts book is empty !\n";
+        return ;
+    }
+    std::string number;
+    // int number;
+    std::cout << "enter the index of a contacts : ";
+    // std::cin >> number;
+    std::getline(std::cin, number);
+    if (number.length() > 1 || number[0] < '1' || number[0] > '8')
+        std::cout << "wrong number !\n";
+    else
+    {
+        std::cout << "first name : " << contacts[(number[0] - '0') - 1].first_name << "\n";
+        std::cout << "lastt name : " << contacts[(number[0] - '0') - 1].last_name << "\n";
+        std::cout << "nickname : " << contacts[(number[0] - '0') - 1].nickname << "\n";
+        std::cout << "phone number : " << contacts[(number[0] - '0') - 1].phone_number << "\n";
+        std::cout << "darkest secret : " << contacts[(number[0] - '0') - 1].darkest_secret << "\n";
+    }
 }
 
 void PhoneBook::Add()
@@ -130,31 +137,27 @@ int main()
     PhoneBook book;
     while (1)
     {
-    std::cout << "Commands :";
-    std::getline(std::cin, command);
-    
-    // if (std::c)
-    // {
-    //     std::cout << "command not found !\n";
-    // }
-    /*else*/ if (command == "ADD")
-    {
-        book.Add();
-    }
-    else if (command == "EXIT")
-        exit (0);
-    else if (command == "SEARCH")
-    {
-        book.Search();
-    }
-    else
-    {
-        std::cout << "command not found !\n";
-    }
-    // for (int i = 0; i < 8; i++) {
-    //     if (!book.contacts[i].first_name.empty()) {
-    //         std::cout << "--" << book.contacts[i].first_name << "--\n";
-    //     }
-    // }
+        std::cout << "available commands : (ADD, SEARCH, EXIT)\n";
+        std::cout << "ps :(enter the commands with UPPERCASE !)\n";
+        std::cout << "enter a command :";
+        std::getline(std::cin, command);
+        
+        if (std::cin.eof())
+            break ;
+        
+        if (command == "ADD")
+        {
+            book.Add();
+        }
+        else if (command == "EXIT")
+            exit (0);
+        else if (command == "SEARCH")
+        {
+            book.Search();
+        }
+        else
+        {
+            std::cout << "command not found !\n";
+        }
     }
 }
