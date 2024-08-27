@@ -6,16 +6,28 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/27 15:43:18 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:54:12 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+int PhoneBook::getNextIndex()
+{
+    return next_index;
+}
+
+void PhoneBook::setNextIndex(int index)
+{
+    next_index = index;
+}
+
 PhoneBook::PhoneBook()
 {
     next_index = 0;
     // std::cout << "phone just created !\n";
 }
+
 Contact::Contact()
 {
     struct timeval tv;
@@ -28,8 +40,7 @@ std::string not_empty(std::string str)
     {
         while (1)
         {
-            
-        std::cout << "\nan entry cannot be empty !\n:";
+            std::cout << "\nan entry cannot be empty !\n:";
             std::getline(std::cin, str);
             if (std::cin.eof())
                 exit(1); ;
@@ -42,7 +53,6 @@ std::string not_empty(std::string str)
 }
 void print_content(std ::string str)
 {
-    // std::cout << "|";
                 if (str.length() < 10)
                 {
                     for (int x = 0; x < 13 - (int )str.length(); x++)
@@ -62,9 +72,9 @@ void print_content(std ::string str)
 void PhoneBook::Search()
 {
 
-    std::cout << "-------------------------------------------------------------------------------------\n";
-    std::cout << "|     INDEX   |  FIRST NAME |   LAST NAME |  NICKNAME   |   NUMBER    | DARK SECRET |\n";
-    std::cout << "|_____________|_____________|_____________|_____________|_____________|_____________|\n";    
+    std::cout << "-----------------------------------------------------------------------\n";
+    std::cout << "|     INDEX   |  FIRST NAME |   LAST NAME |  NICKNAME   |   NUMBER    |\n";
+    std::cout << "|_____________|_____________|_____________|_____________|_____________|\n";    
         for (int i = 0; i < 8; i++)
         {
 
@@ -77,8 +87,7 @@ void PhoneBook::Search()
                 print_content(contacts[i].last_name);
                 print_content(contacts[i].nickname);
                 print_content(contacts[i].phone_number);
-                print_content(contacts[i].darkest_secret);
-    std::cout << "\n|_____________|_____________|_____________|_____________|_____________|_____________|\n"; 
+    std::cout << "\n|_____________|_____________|_____________|_____________|_____________|\n"; 
             }
         }
     if (contacts[0].first_name.empty())
@@ -104,7 +113,7 @@ void PhoneBook::Search()
         std::cout << "lastt name : " << contacts[(number[0] - '0') - 1].last_name << "\n";
         std::cout << "nickname : " << contacts[(number[0] - '0') - 1].nickname << "\n";
         std::cout << "phone number : " << contacts[(number[0] - '0') - 1].phone_number << "\n";
-        std::cout << "darkest secret : " << contacts[(number[0] - '0') - 1].darkest_secret << "\n";
+        // std::cout << "darkest secret : " << contacts[(number[0] - '0') - 1].darkest_secret << "\n";
     }
 }
 int strnumber(std::string str)
@@ -156,15 +165,15 @@ void PhoneBook::Add()
     std::cout << "darkest secret : ";
     std::getline(std::cin, ds);
     ds = not_empty(ds);
-    contacts[next_index].first_name = first;
-    contacts[next_index].last_name = last;
-    contacts[next_index].darkest_secret = ds;
-    contacts[next_index].nickname = nickname;
-    contacts[next_index].phone_number = number;
-    if (next_index < 7)
-        next_index++;
+    contacts[getNextIndex()].first_name = first;
+    contacts[getNextIndex()].last_name = last;
+    contacts[getNextIndex()].darkest_secret = ds;
+    contacts[getNextIndex()].nickname = nickname;
+    contacts[getNextIndex()].phone_number = number;
+    if (getNextIndex() < 7)
+        setNextIndex(getNextIndex());
     else
-        next_index = 0;
+        setNextIndex(0);
 }
 
 int main()
