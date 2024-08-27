@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/26 19:51:51 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:43:18 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,17 @@ std::string not_empty(std::string str)
 {
     if (str.empty())
     {
-        std::cout << "an entry cannot be empty !\n";
-        exit (1);
+        while (1)
+        {
+            
+        std::cout << "\nan entry cannot be empty !\n:";
+            std::getline(std::cin, str);
+            if (std::cin.eof())
+                exit(1); ;
+            if (!str.empty())
+                break ;
+            
+        }
     }
     return (str);
 }
@@ -82,6 +91,11 @@ void PhoneBook::Search()
     std::cout << "enter the index of a contacts : ";
     // std::cin >> number;
     std::getline(std::cin, number);
+    if (std::cin.eof() || number.empty())
+    {
+        std::cout << "this filed can't be empty";
+        return ;
+    }
     if (number.length() > 1 || number[0] < '1' || number[0] > '8')
         std::cout << "wrong number !\n";
     else
@@ -93,7 +107,20 @@ void PhoneBook::Search()
         std::cout << "darkest secret : " << contacts[(number[0] - '0') - 1].darkest_secret << "\n";
     }
 }
-
+int strnumber(std::string str)
+{
+    if (str.length() < 10)
+        return 0;
+    
+    for (int i = 0;i < (int)str.length(); i++)
+    {
+        if (!isdigit(str[i]) && str[i] != '+')
+            return 0;
+        if (str[i] == '+' && i)
+            return 0;
+    }
+    return 1;
+}
 void PhoneBook::Add()
 {
     // bool found = false;
@@ -116,6 +143,15 @@ void PhoneBook::Add()
     std::cout << "number : ";
     std::getline(std::cin, number);
     number = not_empty(number);
+    while (1)
+    {
+        if (!number.empty() && strnumber(number))
+            break ;
+        std::cout << "wrong number !\nnumber : ";
+        std::getline(std::cin, number);
+        number = not_empty(number);
+}   
+
     // darkest secret
     std::cout << "darkest secret : ";
     std::getline(std::cin, ds);
