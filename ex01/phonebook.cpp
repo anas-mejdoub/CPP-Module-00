@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/27 18:54:12 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:53:00 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,51 @@ PhoneBook::PhoneBook()
 
 Contact::Contact()
 {
-    struct timeval tv;
-    gettimeofday(&tv, nullptr);
-    time_stamp = tv.tv_usec;
+    
 }
+
+std::string Contact::getNumber()
+{
+    return phone_number;
+}
+std::string Contact::getFirstName()
+{
+    return first_name;
+}
+std::string Contact::getLastName()
+{
+    return last_name;
+}
+std::string Contact::getDarkSecret()
+{
+    return darkest_secret;
+}
+std::string Contact::getNickName()
+{
+    return nickname;
+}
+
+void Contact::setFirstName(std::string str)
+{
+    first_name = str;
+}
+void Contact::setLastName(std::string str)
+{
+    last_name = str;
+}
+void Contact::setDarkSecret(std::string str)
+{
+    darkest_secret = str;
+}
+void Contact::setNickName(std::string str)
+{
+    nickname = str;
+}
+void Contact::setNumber(std::string str)
+{
+    phone_number = str;
+}
+
 std::string not_empty(std::string str)
 {
     if (str.empty())
@@ -72,25 +113,25 @@ void print_content(std ::string str)
 void PhoneBook::Search()
 {
 
-    std::cout << "-----------------------------------------------------------------------\n";
-    std::cout << "|     INDEX   |  FIRST NAME |   LAST NAME |  NICKNAME   |   NUMBER    |\n";
-    std::cout << "|_____________|_____________|_____________|_____________|_____________|\n";    
+    std::cout << "---------------------------------------------------------\n";
+    std::cout << "|     INDEX   |  FIRST NAME |   LAST NAME |  NICKNAME   |\n";
+    std::cout << "|_____________|_____________|_____________|_____________|\n";    
         for (int i = 0; i < 8; i++)
         {
 
-            if (!contacts[i].darkest_secret.empty())
+            if (!contacts[i].getFirstName().empty())
             {
                 std::cout << "|";
                 char c = (i + 1) + '0';
                 print_content(&c);
-                print_content(contacts[i].first_name);
-                print_content(contacts[i].last_name);
-                print_content(contacts[i].nickname);
-                print_content(contacts[i].phone_number);
-    std::cout << "\n|_____________|_____________|_____________|_____________|_____________|\n"; 
+                print_content(contacts[i].getFirstName());
+                print_content(contacts[i].getLastName());
+                print_content(contacts[i].getNickName());
+                // print_content(contacts[i].phone_number);
+    std::cout << "\n|_____________|_____________|_____________|______________|\n"; 
             }
         }
-    if (contacts[0].first_name.empty())
+    if (contacts[0].getFirstName().empty())
     {
         std::cout << "your contacts book is empty !\n";
         return ;
@@ -109,11 +150,11 @@ void PhoneBook::Search()
         std::cout << "wrong number !\n";
     else
     {
-        std::cout << "first name : " << contacts[(number[0] - '0') - 1].first_name << "\n";
-        std::cout << "lastt name : " << contacts[(number[0] - '0') - 1].last_name << "\n";
-        std::cout << "nickname : " << contacts[(number[0] - '0') - 1].nickname << "\n";
-        std::cout << "phone number : " << contacts[(number[0] - '0') - 1].phone_number << "\n";
-        // std::cout << "darkest secret : " << contacts[(number[0] - '0') - 1].darkest_secret << "\n";
+        std::cout << "first name : " << contacts[(number[0] - '0') - 1].getFirstName() << "\n";
+        std::cout << "lastt name : " << contacts[(number[0] - '0') - 1].getLastName() << "\n";
+        std::cout << "nickname : " << contacts[(number[0] - '0') - 1].getNickName() << "\n";
+        std::cout << "phone number : " << contacts[(number[0] - '0') - 1].getNumber() << "\n";
+        std::cout << "darkest secret : " << contacts[(number[0] - '0') - 1].getDarkSecret() << "\n";
     }
 }
 int strnumber(std::string str)
@@ -165,11 +206,11 @@ void PhoneBook::Add()
     std::cout << "darkest secret : ";
     std::getline(std::cin, ds);
     ds = not_empty(ds);
-    contacts[getNextIndex()].first_name = first;
-    contacts[getNextIndex()].last_name = last;
-    contacts[getNextIndex()].darkest_secret = ds;
-    contacts[getNextIndex()].nickname = nickname;
-    contacts[getNextIndex()].phone_number = number;
+    contacts[getNextIndex()].setFirstName(first);
+    contacts[getNextIndex()].setLastName(last);
+    contacts[getNextIndex()].setDarkSecret(ds);
+    contacts[getNextIndex()].setNickName(nickname);
+    contacts[getNextIndex()].setNumber(number);
     if (getNextIndex() < 7)
         setNextIndex(getNextIndex());
     else

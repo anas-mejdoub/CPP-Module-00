@@ -1,6 +1,6 @@
 SRC=megaphone.cpp
 OBJ=$(SRC:.cpp=.o)
-CC=clang++
+CC=c++
 CFLAGS=-Wall -Wextra -Werror
 NAME=megaphone
 
