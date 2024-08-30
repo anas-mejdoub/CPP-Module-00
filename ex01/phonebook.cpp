@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/29 19:53:00 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/30 11:26:29 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void print_content(std ::string str)
 {
                 if (str.length() < 10)
                 {
+                    // std::cout << "<<<" << str <<">>>";
                     for (int x = 0; x < 13 - (int )str.length(); x++)
                         std::cout << " ";
                     std::cout << str;
@@ -103,11 +104,12 @@ void print_content(std ::string str)
                 }
                 else
                 {
+                    std::cout << "  ";
                     for (int x = 0; x < 10; x++)
                     {
                         std::cout << str[x];
                     }
-                    std::cout << ".  |";
+                    std::cout << ".|";
                 }
 }
 void PhoneBook::Search()
@@ -122,13 +124,14 @@ void PhoneBook::Search()
             if (!contacts[i].getFirstName().empty())
             {
                 std::cout << "|";
-                char c = (i + 1) + '0';
-                print_content(&c);
+                for (int x = 0; x < 12 ; x++)
+                        std::cout << " ";
+                    std::cout << i + 1;
+                    std::cout << "|";
                 print_content(contacts[i].getFirstName());
                 print_content(contacts[i].getLastName());
                 print_content(contacts[i].getNickName());
-                // print_content(contacts[i].phone_number);
-    std::cout << "\n|_____________|_____________|_____________|______________|\n"; 
+    std::cout << "\n|_____________|_____________|_____________|_____________|\n"; 
             }
         }
     if (contacts[0].getFirstName().empty())
