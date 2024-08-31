@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 21:51:06 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/30 19:03:43 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/30 21:01:19 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ Account::Account(int initial_deposit)
     _nbAccounts++;
     _nbDeposits = 0;
     _nbWithdrawals = 0;
-    
     _displayTimestamp();
     std::cout << " index:" << _accountIndex << ";amount" << _totalAmount << ";created" << std::endl;
 }
@@ -65,11 +64,6 @@ int Account::getNbWithdrawals()
     return _totalNbWithdrawals;
 }
 
-// void Account::displayAccountsInfos( void )
-// {
-    
-// }
-
 void Account::displayStatus(void) const
 {
     _displayTimestamp();
@@ -82,7 +76,6 @@ void Account::makeDeposit(int deposit)
     std::cout << " index:" << _accountIndex << ";p_amount:" << _amount << ";deposit:" << deposit << ";amount:" << _amount + deposit << _nbDeposits + 1 << std::endl;
     _amount += deposit;
     _nbDeposits++;
-    // _nbDeposits += deposit;
 }
 
 bool Account::makeWithdrawal(int withdrawal)
@@ -103,7 +96,3 @@ bool Account::makeWithdrawal(int withdrawal)
     }
 }
 
-// int main()
-// {
-//     return 0;
-// }

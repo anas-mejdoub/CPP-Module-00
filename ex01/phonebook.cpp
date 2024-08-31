@@ -6,7 +6,7 @@
 /*   By: amejdoub <amejdoub@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:05:25 by amejdoub          #+#    #+#             */
-/*   Updated: 2024/08/30 16:26:58 by amejdoub         ###   ########.fr       */
+/*   Updated: 2024/08/31 11:51:08 by amejdoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,21 @@ void Contact::setNumber(std::string str)
 {
     phone_number = str;
 }
-
+int space_str(std::string str)
+{
+    size_t i;
+    for ( i = 0; i < str.length(); i++)
+    {
+        if ((str[i] != ' ' && str[i] != '\t'))
+            return 0;
+        if (i == 9)
+            return 1;
+    }
+    return i == str.length() ? 1 : 0;
+}
 std::string not_empty(std::string str)
 {
-    if (str.empty())
+    if (str.empty() || space_str(str))
     {
         while (1)
         {
@@ -94,7 +105,7 @@ std::string not_empty(std::string str)
 }
 void print_content(std ::string str)
 {
-                if (str.length() < 10)
+                if (str.length() <= 10)
                 {
                     // std::cout << "<<<" << str <<">>>";
                     for (int x = 0; x < 13 - (int )str.length(); x++)
@@ -111,6 +122,32 @@ void print_content(std ::string str)
                     }
                     std::cout << ".|";
                 }
+}
+int checkDigit(std::string str)
+{
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (!std::isdigit(str[i]))
+            return 1;
+    }
+    return 0;
+}
+std::string numberNotEmpty(std::string str)
+{
+    if (str.empty() || space_str(str) || checkDigit(str))
+    {
+        while (1)
+        {
+            std::cout << "\nwrong try again !\n:";
+            std::getline(std::cin, str);
+            if (std::cin.eof())
+                exit(1); ;
+            if (!str.empty() && !space_str(str) && !checkDigit(str))
+                break ;
+            
+        }
+    }
+    return (str);
 }
 void PhoneBook::Search()
 {
@@ -144,13 +181,9 @@ void PhoneBook::Search()
     std::cout << "enter the index of a contacts : ";
     // std::cin >> number;
     std::getline(std::cin, number);
-    if (std::cin.eof() || number.empty())
-    {
-        std::cout << "this filed can't be empty";
-        return ;
-    }
-    if (number.length() > 1 || number[0] < '1' || number[0] > '8')
-        std::cout << "wrong number !\n";
+    number = numberNotEmpty(number);
+    if (number.length() > 1 || number[0] < '1' || number[0] > getNextIndex() + '0')
+        std::cout << "the number is not in range !\n";
     else
     {
         std::cout << "first name : " << contacts[(number[0] - '0') - 1].getFirstName() << "\n";
